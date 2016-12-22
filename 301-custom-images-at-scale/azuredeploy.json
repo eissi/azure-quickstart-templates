@@ -65,7 +65,7 @@
     },
     "computeOSType": {
       "type": "string",
-      "defaultValue": "Linux",
+      "defaultValue": "Windows",
       "allowedValues": [
         "Linux",
         "Windows"
@@ -132,7 +132,7 @@
     "storageAccountType": "Standard_LRS",
     "transferImagePublisher": "Canonical",
     "transferImageOffer": "UbuntuServer",
-    "ubuntuOSVersion": "15.10",
+    "ubuntuOSVersion": "16.04-LTS",
     "imagePieces": "[split(parameters('imageLocation'),'/')]",
     "blobName": "[variables('imagePieces')[sub(length(variables('imagePieces')),1)]]",
 
