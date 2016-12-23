@@ -69,7 +69,7 @@
 		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
 		"subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
 		"publicIPAddressName": "publicip1",
-		"publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
+		
 		"nicName": "networkInterface1",
 		"nicId": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]",
 		"lbName": "loadBalancer1",
