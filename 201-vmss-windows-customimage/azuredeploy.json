@@ -228,7 +228,7 @@
         "capacity": "[parameters('instanceCount')]"
       },
       "properties": {
-        "overprovision": "true",
+        "overprovision": "false",
         "upgradePolicy": {
           "mode": "Manual"
         },
@@ -260,7 +260,7 @@
                       "name": "ip1",
                       "properties": {
                         "subnet": {
-                          "id": "[variables('subnetRef')]"
+                          "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', 'jang-vnet', '/subnets/', 'default')]"
                         },
                         "loadBalancerBackendAddressPools": [
                           {
