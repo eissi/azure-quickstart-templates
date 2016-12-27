@@ -130,7 +130,7 @@
         "displayName": "LoadBalancer"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses',parameters('vmssname'))]"
+        "[concat('Microsoft.Network/publicIPAddresses/',parameters('vmssname'))]"
       ],
 
       "properties": {
