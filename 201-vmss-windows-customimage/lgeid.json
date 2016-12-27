@@ -104,8 +104,8 @@
         "networkApi": "2016-03-30",
         "computeApi": "2016-03-30"
 	},
-	"resources": [
-		    {
+  "resources": [
+    {
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[parameters('vmssname')]",
       "location": "[resourceGroup().location]",
@@ -117,11 +117,54 @@
       "properties": {
         "publicIPAllocationMethod": "Static",
         "dnsSettings": {
-          "domainNameLabel": "[concat(parameters('vmssname'),uniquestring(resourcegroup().Name))]"
+          "domainNameLabel": "[concat(parameters('vmssname'),uniquestring(parameters('vmssname')))]"
         }
       }
     },
+    {
+      "type": "Microsoft.Network/loadBalancers",
+      "name": "[concat(parameters('vmssname'),uniquestring(parameters('vmssname')))]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-06-15",
+      "tags": {
+        "displayName": "LoadBalancer"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Network/publicIPAddresses',parameters('vmssname'))]"
+      ],
 
+      "properties": {
+        "frontendIPConfigurations": [
+          {
+            "name": "LoadBalancerFrontEnd",
+            "properties": {
+              "publicIPAddress": {
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('vmssname'))]"
+              }
+            }
+          }
+        ],
+        "backendAddressPools": [
+          {
+            "name": "bepool"
+          }
+        ],
+        "inboundNatPools": [
+          {
+            "name": "natPoolName",
+            "properties": {
+              "frontendIPConfiguration": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(parameters('vmssname'),uniquestring(parameters('vmssname')))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
+              },
+              "protocol": "tcp",
+              "frontendPortRangeStart": 50000,
+              "frontendPortRangeEnd": 50499,
+              "backendPort": 3389
+            }
+          }
+        ]
+      }
+    },
     {
       "type": "Microsoft.Compute/virtualMachineScaleSets",
       "apiVersion": "[variables('computeApi')]",
@@ -132,6 +175,10 @@
         "tier": "Standard",
         "capacity": "[parameters('instanceCount')]"
       },
+      "dependsOn": [
+        "[concat('Microsoft.Network/loadBalancers/',concat(parameters('vmssname'),uniquestring(parameters('vmssname'))))]"
+        
+      ],
       "properties": {
         "overprovision": "false",
         "upgradePolicy": {
@@ -166,8 +213,17 @@
                       "properties": {
                         "subnet": {
                           "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', parameters('vnetname'), '/subnets/', parameters('subnetname'))]"
-                        }
-                        
+                        },
+                        "loadBalancerBackendAddressPools": [
+                          {
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(parameters('vmssname'),uniquestring(parameters('vmssname'))), '/backendAddressPools/', 'bepoo')]"
+                          }
+                        ],
+                        "loadBalancerInboundNatPools": [
+                          {
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(parameters('vmssname'),uniquestring(parameters('vmssname'))), '/inboundNatPools/', 'natPoolName')]"
+                          }
+                        ]
                       }
                     }
                   ]
@@ -178,7 +234,7 @@
         }
       }
     }
-	],
+  ],
 	"outputs": {
 		
 	}
