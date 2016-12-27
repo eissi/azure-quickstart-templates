@@ -105,6 +105,22 @@
         "computeApi": "2016-03-30"
 	},
 	"resources": [
+		    {
+      "type": "Microsoft.Network/publicIPAddresses",
+      "name": "[parameters('vmssname')]",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2015-06-15",
+      "tags": {
+        "displayName": "PublicIP"
+      },
+
+      "properties": {
+        "publicIPAllocationMethod": "Static",
+        "dnsSettings": {
+          "domainNameLabel": "[concat(parameters('vmssname'),uniquestring(resourcegroup().Name)]"
+        }
+      }
+    },
 
     {
       "type": "Microsoft.Compute/virtualMachineScaleSets",
