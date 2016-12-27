@@ -107,7 +107,7 @@
   "resources": [
     {
       "type": "Microsoft.Network/publicIPAddresses",
-      "name": "[concat(parameters('vmssname'),uniqueString(parameters('vmssname')))]",
+      "name": "[concat(resourcegroup().name,parameters('vmssname'))]",
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-06-15",
       "tags": {
@@ -130,7 +130,7 @@
         "displayName": "LoadBalancer"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/',concat(parameters('vmssname'),uniqueString(parameters('vmssname'))))]"
+        "[concat('Microsoft.Network/publicIPAddresses/',concat(resourcegroup().name,parameters('vmssname')))]"
       ],
 
       "properties": {
@@ -139,7 +139,7 @@
             "name": "LoadBalancerFrontEnd",
             "properties": {
               "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('vmssname'),uniqueString(parameters('vmssname'))))]"
+                "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(resourcegroup().name,parameters('vmssname')))]"
               }
             }
           }
