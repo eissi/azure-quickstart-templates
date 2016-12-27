@@ -117,7 +117,7 @@
       "properties": {
         "publicIPAllocationMethod": "Static",
         "dnsSettings": {
-          "domainNameLabel": "[concat(parameters('vmssname'),uniquestring(resourcegroup().Name)]"
+          "domainNameLabel": "[concat(parameters('vmssname'),uniquestring(resourcegroup().Name))]"
         }
       }
     },
