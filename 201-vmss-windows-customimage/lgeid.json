@@ -125,7 +125,7 @@
     },
     {
       "type": "Microsoft.Network/loadBalancers",
-      "name": "[concat(parameters('vmssname'),uniquestring(parameters('vmssname')))]",
+      "name": "[concat(resourceGroup().name,parameters('vmssname'))]",
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-06-15",
       "tags": {
