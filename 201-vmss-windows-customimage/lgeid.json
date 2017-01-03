@@ -156,7 +156,7 @@
             "name": "natPoolName",
             "properties": {
               "frontendIPConfiguration": {
-                "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(resourcegroup().name,parameters('vmssname')))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(resourcegroup().name,parameters('vmssname'))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
               },
               "protocol": "tcp",
               "frontendPortRangeStart": 50000,
