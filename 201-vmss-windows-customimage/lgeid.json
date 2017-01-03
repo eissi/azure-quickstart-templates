@@ -156,7 +156,7 @@
             "name": "natPoolName",
             "properties": {
               "frontendIPConfiguration": {
-                "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(parameters('vmssname'),uniquestring(parameters('vmssname')))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(resourcegroup().name,parameters('vmssname')))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
               },
               "protocol": "tcp",
               "frontendPortRangeStart": 50000,
@@ -178,7 +178,7 @@
         "capacity": "[parameters('instanceCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Network/loadBalancers/',concat(parameters('vmssname'),uniquestring(parameters('vmssname'))))]"
+        "[concat('Microsoft.Network/loadBalancers/',concat(resourcegroup().name,parameters('vmssname')))]"
         
       ],
       "properties": {
