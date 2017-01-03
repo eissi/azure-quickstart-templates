@@ -218,12 +218,12 @@
                         },
                         "loadBalancerBackendAddressPools": [
                           {
-                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(parameters('vmssname'),uniquestring(parameters('vmssname'))), '/backendAddressPools/', 'bepool')]"
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(resourcegroup().name,parameters('vmssname')), '/backendAddressPools/', 'bepool')]"
                           }
                         ],
                         "loadBalancerInboundNatPools": [
                           {
-                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(parameters('vmssname'),uniquestring(parameters('vmssname'))), '/inboundNatPools/', 'natPoolName')]"
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(resourcegroup().name,parameters('vmssname')), '/inboundNatPools/', 'natPoolName')]"
                           }
                         ]
                       }
