@@ -153,7 +153,7 @@
         ],
         "inboundNatPools": [
           {
-            "name": "natPoolName",
+            "name": "natRDPpool",
             "properties": {
               "frontendIPConfiguration": {
                 "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(resourcegroup().name,parameters('vmssname'))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
@@ -162,6 +162,18 @@
               "frontendPortRangeStart": 50000,
               "frontendPortRangeEnd": 50499,
               "backendPort": 3389
+            }
+          },
+          {
+            "name": "natWEBpool",
+            "properties": {
+              "frontendIPConfiguration": {
+                "id": "[concat(resourceId('Microsoft.Network/loadBalancers',concat(resourcegroup().name,parameters('vmssname'))),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
+              },
+              "protocol": "tcp",
+              "frontendPortRangeStart": 8080,
+              "frontendPortRangeEnd": 8800,
+              "backendPort": 8080
             }
           }
         ]
@@ -223,7 +235,10 @@
                         ],
                         "loadBalancerInboundNatPools": [
                           {
-                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(resourcegroup().name,parameters('vmssname')), '/inboundNatPools/', 'natPoolName')]"
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(resourcegroup().name,parameters('vmssname')), '/inboundNatPools/', 'natRDPpool')]"
+                          },
+                          {
+                            "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', concat(resourcegroup().name,parameters('vmssname')), '/inboundNatPools/', 'natWEBpool')]"
                           }
                         ]
                       }
