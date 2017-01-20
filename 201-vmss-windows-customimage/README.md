@@ -1,3 +1,7 @@
+from azuredeploy.json to lgeid.json
+-virtual network -publicip fqdn +lb 8080
+
+
 ### Deploy a VM Scale Set based on a Windows Custom Image ###
 
 This template deploys a VM Scale Set from a user provided Windows Custom Image
