@@ -1,21 +1,22 @@
 {
 	"$schema": "http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json",
 	"contentVersion": "1.0.0.0",
-	"parameters": {
-		"vmSSName": {
-			"type": "string",
-			"metadata": {
-				"description": "The Name of the VM Scale Set"
-			}
-		},
-		"instanceCount": {
-			"type": "int",
-			"metadata": {
-				"description": "Number of VM instances to create in the scale set"
-			}
-		},
-		"vmSize": {
-			"type": "string",      "defaultValue": "Standard_A1_v2",
+  "parameters": {
+    "vmSSName": {
+      "type": "string",
+      "metadata": {
+        "description": "The Name of the VM Scale Set"
+      }
+    },
+    "instanceCount": {
+      "type": "int",
+      "metadata": {
+        "description": "Number of VM instances to create in the scale set"
+      }
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_A1_v2",
       "allowedValues": [
         "Standard_A1_v2",
         "Standard_A2m_v2",
@@ -52,38 +53,50 @@
         "Basic_A2",
         "Basic_A3",
         "Basic_A4"
-			],
-			"metadata": {
-				"description": "The size of the VM instances Created"
-			}
-		},
-		
-		"adminUsername": {
-			"type": "string",
-			"metadata": {
-				"description": "The Username of the administrative user for each VM instance created"
-			}
-		},
-		"adminPassword": {
-			"type": "securestring",
-			"metadata": {
-				"description": "The Password of the administrative user for each VM instance created"
-			}
-		},
-		"sourceImageVhdUri": {
-			"type": "string",
-			"metadata": {
-				"description": "The source of the blob containing the custom image"
-			}
-		},
-		"vnetName":{
-			"type":"string"},
-		"subnetName":{"type":"string"},
-		"vnetResourceGroup":{
-			"type":"string"}
-		
-		
-	},
+      ],
+      "metadata": {
+        "description": "The size of the VM instances Created"
+      }
+    },
+    "osType": {
+      "type": "string",
+      "defaultValue": "Windows",
+      "allowedValues": [
+        "Windows",
+        "Linux"
+      ],
+      "metadata": {
+        "description": "The Windows version for the VM. This will pick a fully patched image of this given Windows version. Allowed values: 2008-R2-SP1, 2012-Datacenter, 2012-R2-Datacenter."
+      }
+    },
+    "adminUsername": {
+      "type": "string",
+      "metadata": {
+        "description": "The Username of the administrative user for each VM instance created"
+      }
+    },
+    "adminPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "The Password of the administrative user for each VM instance created"
+      }
+    },
+    "sourceImageVhdUri": {
+      "type": "string",
+      "metadata": {
+        "description": "The source of the blob containing the custom image"
+      }
+    },
+    "vnetName": {
+      "type": "string"
+    },
+    "subnetName": { "type": "string" },
+    "vnetResourceGroup": {
+      "type": "string"
+    }
+
+
+  },
 	"variables": {
 		"addressPrefix": "10.0.0.0/16",
 		"subnetName": "Subnet",
@@ -217,7 +230,7 @@
               "name": "vmssosdisk",
               "caching": "ReadOnly",
               "createOption": "FromImage",
-              "osType": "Windows",
+              "osType": "[parameters('osType')]",
               "image": {
                 "uri": "[parameters('sourceImageVhdUri')]"
               }
