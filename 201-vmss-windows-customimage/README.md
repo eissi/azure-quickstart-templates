@@ -19,7 +19,7 @@ Using the existing vnet
 </a>
 
 without PSH to create multiple VMSS with managed disk
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Feissi%2FMyAzureRGTemplate%2FMyAzureRGTemplate%2Fmaster%2FMyAzureRGTemplate%2FTemplates%2Fvmss-userimage.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Feissi%2FMyAzureRGTemplate%2Fmaster%2FMyAzureRGTemplate%2FMyAzureRGTemplate%2FTemplates%2Fvmss-userimage.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
