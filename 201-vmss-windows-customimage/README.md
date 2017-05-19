@@ -19,12 +19,13 @@ Using the existing vnet
 </a>
 
 without PSH to create multiple VMSS with managed disk
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Feissi%2FMyAzureRGTemplate%2Fmaster%2FMyAzureRGTemplate%2FTemplates%2Fvmss-userimage.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Feissi%2FMyAzureRGTemplate%2FMyAzureRGTemplate%2Fmaster%2FMyAzureRGTemplate%2FTemplates%2Fvmss-userimage.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-https://github.com/eissi/MyAzureRGTemplate/blob/master/MyAzureRGTemplate/MyAzureRGTemplate/Templates/vmss-userimage.json
 
+https://raw.githubusercontent.com/eissi/MyAzureRGTemplate/master/MyAzureRGTemplate/Templates/vmss-userimage.json
+https://raw.githubusercontent.com/eissi/MyAzureRGTemplate/master/MyAzureRGTemplate/MyAzureRGTemplate/Templates/vmss-userimage.json
 
 Adding SSH, RDP, 8080
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Feissi%2Fazure-quickstart-templates%2Fmaster%2F201-vmss-windows-customimage%2Fwithoutvnet.json" target="_blank">
